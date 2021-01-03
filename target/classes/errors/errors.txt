@@ -1,0 +1,19 @@
+https://stackoverflow.com/questions/33796218/content-type-application-x-www-form-urlencodedcharset-utf-8-not-supported-for
+https://www.developpez.net/forums/d1793613/java/plateformes-java-ee-jakarta-ee-spring-serveurs/spring/spring-boot/springboot-probleme-type-unsupported-media-type-status-415-a/
+https://github.com/spring-projects/spring-framework/issues/22734
+
+
+crud
+https://www.baeldung.com/spring-boot-crud-thymeleaf
+https://gokan-ekinci.developpez.com/tutoriels/java/spring-data-crud-database-sql-jdbc-jdbctemplate-jpa/
+
+
+envoyer les données sous forme de json
+https://openclassrooms.com/fr/courses/3306901-creez-des-pages-web-interactives-avec-javascript/3626521-envoyez-des-donnees-a-un-serveur-web
+https://qastack.fr/programming/22195065/how-to-send-a-json-object-using-html-form-data
+https://webdevdesigner.com/q/serialize-form-data-to-json-duplicate-5044/
+
+
+
+https://mkyong.com/spring-boot/spring-boot-mysql-table-db_name-hibernate_sequence-doesnt-exist/
+
