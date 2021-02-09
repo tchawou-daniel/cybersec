@@ -45,19 +45,7 @@ public class MainController {
         return "index";
     }
 
-    /*@PostMapping("/save-task/{id}")
-    public String saveTask(@PathVariable("id") int id, @RequestBody Task task, BindingResult result, ModelMap modelMap){
-        /*if (result.hasErrors()) {
-            task.setId(id);
-            return "index";
-        }*/
-     /*   task.setDateCreated(new Date());
-        System.out.println(task);
-        this.taskRepository.saveAndFlush(task);
-        modelMap.put("tasks", taskRepository.findAll());
-        modelMap.put("mode", "MODE_TASKS");
-        return "index";
-    }*/
+
 
     @RequestMapping(value ="/create-task/", method = RequestMethod.POST)
     public String create(Task task, ModelMap modelMap) {
@@ -80,7 +68,8 @@ public class MainController {
 
 	@GetMapping("/edit-task/{id}")
 	public String editTask(@PathVariable("id") int id, ModelMap modelMap){
-        modelMap.put("task", taskRepository.getOne(id));
+        modelMap.put("task", taskRepository.findOneInsecure(id));
+        //modelMap.put("task", taskRepository.getOne(id));
         modelMap.put("mode", "MODE_UPDATE");
 		return "index";
 	}
