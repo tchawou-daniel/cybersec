@@ -70,7 +70,8 @@ inspiration link: https://www.softwaretestinghelp.com/sql-injection-how-to-test-
 ,I could not able to test this but here are some links which may help to do so
 ### HTTP attack 
  - To test this attack we need to install slowhttptest(SlowHTTPTest is a highly configurable tool that simulates some Application Layer Denial of Service attacks.). On Linux we can do that with this command:  sudo apt-get install slowhttptest.
- - You can test the security with this command: slowhttptest -c 1000 -H -g -o slowhttp -i 10 -r 200 -t GET -u http://localhost:8086/ -x 24 -p 3
+ - You can test the security with this command: 
+    *slowhttptest -c 1000 -H -g -o slowhttp -i 10 -r 200 -t GET -u http://localhost:8086/ -x 24 -p 3
  - if service available:   YES
     * if **service available: YES** then the system is secure
  - You can see my test on the image bellow
@@ -80,14 +81,7 @@ inspiration link: https://www.softwaretestinghelp.com/sql-injection-how-to-test-
    * https://tools.kali.org/stress-testing/slowhttptest
 
 ### CRSF attack
-I could not able to test this but here are some links which may help to do so
- - To test this attack you need to Identify a URL on your site where a CSRF attack could have a negative effect on your site.
-    * In our case concerning my project it's http://localhost:8086/delete-task/[id] 
-        - we need to have something like that http://localhost:8086/delete-task/16 for example
- -
- 
- - Inspirations links:
-    * https://security.stackexchange.com/questions/67630/how-can-we-find-the-csrf-vulnerability-in-a-website
+I could not able to test this because I don't really use sessions or cookies.
 
 ### What I think insecure
 - The user can change the page through the URL, especially the edit-task page, he can change the task he wants to edit through the URL. He just has to change the id for do that,
