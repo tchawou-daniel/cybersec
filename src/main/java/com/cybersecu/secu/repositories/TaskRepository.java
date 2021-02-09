@@ -8,7 +8,8 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface TaskRepository extends JpaRepository<Task, Integer> {
-   /* @Query(value = "SELECT id,name,description, date_created ,finished FROM t_tasks WHERE id=?1")
-    Task findOneInsecure(@Param("id") int id);*/
+    //@Query(value = "SELECT id,name,description, date_created ,finished FROM t_tasks WHERE id=?1")
+    @Query(value = "SELECT id,name,description ,finished FROM t_tasks WHERE id=?1")
+    Task findOneInsecure(@Param("id") int id);
 }
 
