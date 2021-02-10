@@ -4,24 +4,30 @@ import com.cybersecu.secu.models.Task;
 import com.cybersecu.secu.repositories.TaskRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class MainController {
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
-    @GetMapping("/home")
+    /*@GetMapping("/home")
     //@ResponseBody
     public String home(@RequestParam(required = false, defaultValue = "D") String mode, ModelMap modelMap) {
         modelMap.put("mode", mode);
-        //System.out.println("\n\n\n" + name + "\n\n\n");
-        //System.out.println("\n\n\n" + request.getParameter("name") +"\n\n\n");
         return "index";
-    }
+    }*/
 
     @Autowired
     private TaskRepository taskRepository;
@@ -48,8 +54,8 @@ public class MainController {
     @RequestMapping(value ="/create-task/", method = RequestMethod.POST)
     public String create(Task task, ModelMap modelMap) {
         task.setDateCreated(new Date());
-        task.setDescription(task.getDescription().replaceAll("(\\b(select)\\b|\\b(SELECT)\\b|(\\b(from)\\b)|(\\b(FROM)\\b)|\\*|\\'|(\\b(and)\\b)| (\\b(AND)\\b)|\\=|(\\b(where)\\b)|(\\b(WHERE)\\b)|(\\b(drop)\\b)|(\\b(DROP)\\b)|(\\b(1=1)\\b)|\\=|\\;)", ""));
-        task.setName(task.getName().replaceAll("(\\b(select)\\b|\\b(SELECT)\\b|(\\b(from)\\b)|(\\b(FROM)\\b)|\\*|\\'|(\\b(and)\\b)| (\\b(AND)\\b)|\\=|(\\b(where)\\b)|(\\b(WHERE)\\b|(\\b(drop)\\b))|(\\b(DROP)\\b)|(\\b(1=1)\\b)|\\=|\\;)", ""));
+        //task.setDescription(task.getDescription().replaceAll("(\\b(select)\\b|\\b(SELECT)\\b|(\\b(from)\\b)|(\\b(FROM)\\b)|\\*|\\'|(\\b(and)\\b)| (\\b(AND)\\b)|\\=|(\\b(where)\\b)|(\\b(WHERE)\\b)|(\\b(drop)\\b)|(\\b(DROP)\\b)|(\\b(1=1)\\b)|\\=|\\;)", ""));
+        //task.setName(task.getName().replaceAll("(\\b(select)\\b|\\b(SELECT)\\b|(\\b(from)\\b)|(\\b(FROM)\\b)|\\*|\\'|(\\b(and)\\b)| (\\b(AND)\\b)|\\=|(\\b(where)\\b)|(\\b(WHERE)\\b|(\\b(drop)\\b))|(\\b(DROP)\\b)|(\\b(1=1)\\b)|\\=|\\;)", ""));
         this.taskRepository.saveAndFlush(task);
         modelMap.put("tasks", taskRepository.findAll());
         modelMap.put("mode", "MODE_TASKS");
@@ -60,8 +66,8 @@ public class MainController {
     public String update(@PathVariable int id, Task task, ModelMap modelMap){
         Task existingTask = taskRepository.getOne(id);
         task.setDateCreated(new Date());
-        task.setDescription(task.getDescription().replaceAll("(\\b(select)\\b|\\b(SELECT)\\b|(\\b(from)\\b)|(\\b(FROM)\\b)|\\*|\\'|(\\b(and)\\b)| (\\b(AND)\\b)|\\=|(\\b(where)\\b)|(\\b(WHERE)\\b)|(\\b(drop)\\b)|(\\b(DROP)\\b)|(\\b(1=1)\\b)|\\=|\\;)", ""));
-        task.setName(task.getName().replaceAll("(\\b(select)\\b|\\b(SELECT)\\b|(\\b(from)\\b)|(\\b(FROM)\\b)|\\*|\\'|(\\b(and)\\b)| (\\b(AND)\\b)|\\=|(\\b(where)\\b)|(\\b(WHERE)\\b)|(\\b(drop)\\b)|(\\b(DROP)\\b)|(\\b(1=1)\\b)|\\=|\\;)", ""));
+        //task.setDescription(task.getDescription().replaceAll("(\\b(select)\\b|\\b(SELECT)\\b|(\\b(from)\\b)|(\\b(FROM)\\b)|\\*|\\'|(\\b(and)\\b)| (\\b(AND)\\b)|\\=|(\\b(where)\\b)|(\\b(WHERE)\\b)|(\\b(drop)\\b)|(\\b(DROP)\\b)|(\\b(1=1)\\b)|\\=|\\;)", ""));
+        //task.setName(task.getName().replaceAll("(\\b(select)\\b|\\b(SELECT)\\b|(\\b(from)\\b)|(\\b(FROM)\\b)|\\*|\\'|(\\b(and)\\b)| (\\b(AND)\\b)|\\=|(\\b(where)\\b)|(\\b(WHERE)\\b)|(\\b(drop)\\b)|(\\b(DROP)\\b)|(\\b(1=1)\\b)|\\=|\\;)", ""));
         BeanUtils.copyProperties(task, existingTask, "id");
         this.taskRepository.saveAndFlush(existingTask);
         modelMap.put("tasks", taskRepository.findAll());
@@ -71,9 +77,9 @@ public class MainController {
 
 	@GetMapping("/edit-task/{id}")
 	public String editTask(@PathVariable("id") int id, ModelMap modelMap){
-        modelMap.put("task", taskRepository.getOne(id));
+        //modelMap.put("task", taskRepository.getOne(id));
         //modelMap.put("task", taskRepository.findOneInsecure(id));
-
+        //modelMap.put("task",this.findOneInsecureAB(id));
         modelMap.put("mode", "MODE_UPDATE");
 		return "index";
 	}
@@ -85,6 +91,7 @@ public class MainController {
         modelMap.put("mode", "MODE_TASKS");
         return "index";
     }
+
 
 
 

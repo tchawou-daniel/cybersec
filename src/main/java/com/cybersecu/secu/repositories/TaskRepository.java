@@ -9,7 +9,8 @@ import java.util.List;
 
 public interface TaskRepository extends JpaRepository<Task, Integer> {
     //@Query(value = "SELECT id,name,description, date_created ,finished FROM t_tasks WHERE id=?1")
-    @Query(value = "SELECT id,name,description ,finished FROM t_tasks WHERE id=?1")
+    @Query(value = "SELECT * FROM t_tasks WHERE id=?1",
+            nativeQuery = true)
     Task findOneInsecure(@Param("id") int id);
 }
 

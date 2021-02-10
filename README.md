@@ -42,7 +42,7 @@ identify special characters and syntaxes SQL. I can suggest as regex (\b(select)
  inside MainController even I insert for exemple a syntaxes SQL in my field the predefined function of spingboot(saveAndFlush) transform the data to String. I insert the code with regex for conserving the consistency of my data
 
 
-### B) Clickjacking attack & XSS & Web Cache Poisoning Attacks & HTTP attack & crsf
+### B) Clickjacking attack & XSS & Web Cache Poisoning Attacks & HTTP attack & CSRF
 I used **Spring security**(https://spring.io/projects/spring-security) in my code.
 The implementation of spring security allow us to secure by default our application against certain attacks such as:
 1) Clickjacking: https://en.wikipedia.org/wiki/Clickjacking
