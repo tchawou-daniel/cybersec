@@ -15,6 +15,7 @@
 ### Built With
 - HTML, CSS, Bootstrap
 - Spring
+- Mysql
 ### Tool used
 - Regex101(https://regex101.com/) in order to find the correct regex 
 ### The security vulnerabilities that we exploit
