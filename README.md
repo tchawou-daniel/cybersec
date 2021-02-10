@@ -11,7 +11,6 @@
 - First step:
 - Second step:
     * Run the command  java -jar target/secu-0.0.1-SNAPSHOT.jar  
-    
 
 ### Built With
 - HTML, CSS, Bootstrap
@@ -62,6 +61,8 @@ Here we can try to insert inside the input field in order to test :
 - maths'
 - ‘ or 1=1;–
 - ‘ or 1=1; drop table t_tasks; —
+[![Demo SQL Attacks whithout using regex]()](https://drive.google.com/file/d/1QC3r9tea08yUAb_IkLvHvTMvvv-60oww/view?usp=sharing)
+[![Demo SQL Attacks whit regex inside the app code]()](https://drive.google.com/file/d/1F1kHXDPW2d0coZLjuNmIHmwL-5lV9MzA/view?usp=sharing)
 inspiration link: https://www.softwaretestinghelp.com/sql-injection-how-to-test-application-for-sql-injection-attacks/
 ### Clickjacking
 - Some links which can help ([first link](https://clickjacker.io/test?url=https:%2F%2Fwww.isnov.com%2Fhome%2F), [second link](https://www.lookout.net/test/clickjack.html))
@@ -90,6 +91,8 @@ You can find this /cybersec/src/resources/templates/xss_attack.html
 ### What I think insecure
 - The user can change the page through the URL, especially the edit-task page, he can change the task he wants to edit through the URL. He just has to change the id for do that,
 I don't know for the moment how to secure this part if it's eventually a problem as I think. I didn't have the time to look for deep about this.
+
+[![Demo insecure]()](previews/https://drive.google.com/file/d/17HqGACgovKW6adGaXcJHCtYIETC2OqtI/view?usp=sharing)
 
 
 

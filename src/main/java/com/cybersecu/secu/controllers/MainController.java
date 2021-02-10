@@ -55,8 +55,8 @@ public class MainController {
     public String create(Task task, ModelMap modelMap) {
         task.setDateCreated(new Date());
         //les regex pour garder l'intégrité et la cohérence des données
-        task.setDescription(task.getDescription().replaceAll("(\\b(select)\\b|\\b(SELECT)\\b|(\\b(from)\\b)|(\\b(FROM)\\b)|\\*|\\'|(\\b(and)\\b)| (\\b(AND)\\b)|\\=|(\\b(where)\\b)|(\\b(WHERE)\\b)|(\\b(drop)\\b)|(\\b(DROP)\\b)|(\\b(1=1)\\b)|\\=|\\;)", ""));
-        task.setName(task.getName().replaceAll("(\\b(select)\\b|\\b(SELECT)\\b|(\\b(from)\\b)|(\\b(FROM)\\b)|\\*|\\'|(\\b(and)\\b)| (\\b(AND)\\b)|\\=|(\\b(where)\\b)|(\\b(WHERE)\\b|(\\b(drop)\\b))|(\\b(DROP)\\b)|(\\b(1=1)\\b)|\\=|\\;)", ""));
+        task.setDescription(task.getDescription().replaceAll("(\\b(select)\\b|\\b(SELECT)\\b|(\\b(from)\\b)|(\\b(FROM)\\b)|\\*|\\'|(\\b(and)\\b)| (\\b(AND)\\b)|\\=|(\\b(where)\\b)|(\\b(WHERE)\\b)|(\\b(drop)\\b)|(\\b(DROP)\\b)|(\\b(1=1)\\b)|\\=|\\;|\\`|\\-|\\1|\\=|\\--|(\\b(or)\\b))", ""));
+        task.setName(task.getName().replaceAll("(\\b(select)\\b|\\b(SELECT)\\b|(\\b(from)\\b)|(\\b(FROM)\\b)|\\*|\\'|(\\b(and)\\b)| (\\b(AND)\\b)|\\=|(\\b(where)\\b)|(\\b(WHERE)\\b|(\\b(drop)\\b))|(\\b(DROP)\\b)|(\\b(1=1)\\b)|\\=|\\;|(\\b(1=1)\\b)|\\=|\\;|\\`|\\-|\\1|\\=|\\--|(\\b(or)\\b))", ""));
         this.taskRepository.saveAndFlush(task);
         modelMap.put("tasks", taskRepository.findAll());
         modelMap.put("mode", "MODE_TASKS");
@@ -68,8 +68,8 @@ public class MainController {
         Task existingTask = taskRepository.getOne(id);
         task.setDateCreated(new Date());
         //les regex pour garder l'intégrité et la cohérence des données
-        task.setDescription(task.getDescription().replaceAll("(\\b(select)\\b|\\b(SELECT)\\b|(\\b(from)\\b)|(\\b(FROM)\\b)|\\*|\\'|(\\b(and)\\b)| (\\b(AND)\\b)|\\=|(\\b(where)\\b)|(\\b(WHERE)\\b)|(\\b(drop)\\b)|(\\b(DROP)\\b)|(\\b(1=1)\\b)|\\=|\\;)", ""));
-        task.setName(task.getName().replaceAll("(\\b(select)\\b|\\b(SELECT)\\b|(\\b(from)\\b)|(\\b(FROM)\\b)|\\*|\\'|(\\b(and)\\b)| (\\b(AND)\\b)|\\=|(\\b(where)\\b)|(\\b(WHERE)\\b)|(\\b(drop)\\b)|(\\b(DROP)\\b)|(\\b(1=1)\\b)|\\=|\\;)", ""));
+        task.setDescription(task.getDescription().replaceAll("(\\b(select)\\b|\\b(SELECT)\\b|(\\b(from)\\b)|(\\b(FROM)\\b)|\\*|\\'|(\\b(and)\\b)| (\\b(AND)\\b)|\\=|(\\b(where)\\b)|(\\b(WHERE)\\b)|(\\b(drop)\\b)|(\\b(DROP)\\b)|(\\b(1=1)\\b)|\\=|\\;|(\\b(1=1)\\b)|\\=|\\;|\\`|\\-|\\1|\\=|\\--|(\\b(or)\\b))", ""));
+        task.setName(task.getName().replaceAll("(\\b(select)\\b|\\b(SELECT)\\b|(\\b(from)\\b)|(\\b(FROM)\\b)|\\*|\\'|(\\b(and)\\b)| (\\b(AND)\\b)|\\=|(\\b(where)\\b)|(\\b(WHERE)\\b)|(\\b(drop)\\b)|(\\b(DROP)\\b)|(\\b(1=1)\\b)|\\=|\\;|(\\b(1=1)\\b)|\\=|\\;|\\`|\\-|\\1|\\=|\\--|(\\b(or)\\b))", ""));
         BeanUtils.copyProperties(task, existingTask, "id");
         this.taskRepository.saveAndFlush(existingTask);
         modelMap.put("tasks", taskRepository.findAll());
