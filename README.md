@@ -24,7 +24,7 @@
 - Cross-site scripting(XSS)  (https://owasp.org/www-community/attacks/xss/)
 - ...
 
-## We are in the main branch, so the secure branch
+## We are in the code-insecure branch, so the insecure branch
 ### A) Injection SQL attack 
 I didn't found a way to exploit this security breach with this Spring projet
 I tried with findOneInsecureAB(inside the MainController) and also with findOneInsecure inside the Task repository
@@ -44,7 +44,19 @@ Here we can try to insert inside the input field in order to test :
 - ‘ or 1=1;–
 - ‘ or 1=1; drop table t_tasks; —
 
-
+### Slow HTTP attack
+ - To test this attack we need to install slowhttptest(SlowHTTPTest is a highly configurable tool that simulates some Application Layer Denial of Service attacks.). On Linux we can do that with this command:  sudo apt-get install slowhttptest.
+ - You can test the security with this command: 
+    *slowhttptest -c 1000 -H -g -o slowhttp -i 10 -r 200 -t GET -u http://localhost:8086/ -x 24 -p 3
+ - if service available:   YES
+    * if **service available: YES** then the system is secure
+ - **I always had the same response and it's strange because I didn't implement or try to implement the Spring security**.
+  You can see my test on the image bellow
+    * ![screenshot](previews/test-httpattack.png)
+ - Inspirations links:
+   * https://www.youtube.com/watch?v=lNzMIeyLIPM
+   * https://tools.kali.org/stress-testing/slowhttptest
+   
 ### CRSF attack
 I think I could not able to test this because I don't really use sessions or cookies. But I implement à code with can help to exploit in the case of a using sessions or cookies.
 You can find this /cybersec/src/resources/templates/xss_attack.html
@@ -54,6 +66,7 @@ You can find this /cybersec/src/resources/templates/xss_attack.html
 ### What I think insecure
 - The user can change the page through the URL, especially the edit-task page, he can change the task he wants to edit through the URL. He just has to change the id for do that,
 I don't know for the moment how to secure this part if it's eventually a problem as I think. I didn't have the time to look for deep about this.
+[![Demo insecure]()](previews/https://drive.google.com/file/d/17HqGACgovKW6adGaXcJHCtYIETC2OqtI/view?usp=sharing)
 
 
 
