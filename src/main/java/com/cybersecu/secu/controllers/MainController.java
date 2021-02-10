@@ -54,8 +54,9 @@ public class MainController {
     @RequestMapping(value ="/create-task/", method = RequestMethod.POST)
     public String create(Task task, ModelMap modelMap) {
         task.setDateCreated(new Date());
-        //task.setDescription(task.getDescription().replaceAll("(\\b(select)\\b|\\b(SELECT)\\b|(\\b(from)\\b)|(\\b(FROM)\\b)|\\*|\\'|(\\b(and)\\b)| (\\b(AND)\\b)|\\=|(\\b(where)\\b)|(\\b(WHERE)\\b)|(\\b(drop)\\b)|(\\b(DROP)\\b)|(\\b(1=1)\\b)|\\=|\\;)", ""));
-        //task.setName(task.getName().replaceAll("(\\b(select)\\b|\\b(SELECT)\\b|(\\b(from)\\b)|(\\b(FROM)\\b)|\\*|\\'|(\\b(and)\\b)| (\\b(AND)\\b)|\\=|(\\b(where)\\b)|(\\b(WHERE)\\b|(\\b(drop)\\b))|(\\b(DROP)\\b)|(\\b(1=1)\\b)|\\=|\\;)", ""));
+        //les regex pour garder l'intégrité et la cohérence des données
+        task.setDescription(task.getDescription().replaceAll("(\\b(select)\\b|\\b(SELECT)\\b|(\\b(from)\\b)|(\\b(FROM)\\b)|\\*|\\'|(\\b(and)\\b)| (\\b(AND)\\b)|\\=|(\\b(where)\\b)|(\\b(WHERE)\\b)|(\\b(drop)\\b)|(\\b(DROP)\\b)|(\\b(1=1)\\b)|\\=|\\;)", ""));
+        task.setName(task.getName().replaceAll("(\\b(select)\\b|\\b(SELECT)\\b|(\\b(from)\\b)|(\\b(FROM)\\b)|\\*|\\'|(\\b(and)\\b)| (\\b(AND)\\b)|\\=|(\\b(where)\\b)|(\\b(WHERE)\\b|(\\b(drop)\\b))|(\\b(DROP)\\b)|(\\b(1=1)\\b)|\\=|\\;)", ""));
         this.taskRepository.saveAndFlush(task);
         modelMap.put("tasks", taskRepository.findAll());
         modelMap.put("mode", "MODE_TASKS");
@@ -66,8 +67,9 @@ public class MainController {
     public String update(@PathVariable int id, Task task, ModelMap modelMap){
         Task existingTask = taskRepository.getOne(id);
         task.setDateCreated(new Date());
-        //task.setDescription(task.getDescription().replaceAll("(\\b(select)\\b|\\b(SELECT)\\b|(\\b(from)\\b)|(\\b(FROM)\\b)|\\*|\\'|(\\b(and)\\b)| (\\b(AND)\\b)|\\=|(\\b(where)\\b)|(\\b(WHERE)\\b)|(\\b(drop)\\b)|(\\b(DROP)\\b)|(\\b(1=1)\\b)|\\=|\\;)", ""));
-        //task.setName(task.getName().replaceAll("(\\b(select)\\b|\\b(SELECT)\\b|(\\b(from)\\b)|(\\b(FROM)\\b)|\\*|\\'|(\\b(and)\\b)| (\\b(AND)\\b)|\\=|(\\b(where)\\b)|(\\b(WHERE)\\b)|(\\b(drop)\\b)|(\\b(DROP)\\b)|(\\b(1=1)\\b)|\\=|\\;)", ""));
+        //les regex pour garder l'intégrité et la cohérence des données
+        task.setDescription(task.getDescription().replaceAll("(\\b(select)\\b|\\b(SELECT)\\b|(\\b(from)\\b)|(\\b(FROM)\\b)|\\*|\\'|(\\b(and)\\b)| (\\b(AND)\\b)|\\=|(\\b(where)\\b)|(\\b(WHERE)\\b)|(\\b(drop)\\b)|(\\b(DROP)\\b)|(\\b(1=1)\\b)|\\=|\\;)", ""));
+        task.setName(task.getName().replaceAll("(\\b(select)\\b|\\b(SELECT)\\b|(\\b(from)\\b)|(\\b(FROM)\\b)|\\*|\\'|(\\b(and)\\b)| (\\b(AND)\\b)|\\=|(\\b(where)\\b)|(\\b(WHERE)\\b)|(\\b(drop)\\b)|(\\b(DROP)\\b)|(\\b(1=1)\\b)|\\=|\\;)", ""));
         BeanUtils.copyProperties(task, existingTask, "id");
         this.taskRepository.saveAndFlush(existingTask);
         modelMap.put("tasks", taskRepository.findAll());
@@ -77,9 +79,8 @@ public class MainController {
 
 	@GetMapping("/edit-task/{id}")
 	public String editTask(@PathVariable("id") int id, ModelMap modelMap){
-        //modelMap.put("task", taskRepository.getOne(id));
-        //modelMap.put("task", taskRepository.findOneInsecure(id));
-        //modelMap.put("task",this.findOneInsecureAB(id));
+        //get One fonction sérurisé renvoi tous les attaques sous forme de chaine de caractére
+        modelMap.put("task", taskRepository.getOne(id));
         modelMap.put("mode", "MODE_UPDATE");
 		return "index";
 	}

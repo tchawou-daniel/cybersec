@@ -32,13 +32,14 @@ With these predefined functions in Spring boot, every element entered by the use
 2) One other way to prevent SQL injections is to use prepared request
 (https://www.journaldev.com/34028/sql-injection-in-java)
 3) We can also remove special characters for protecting our code from SQL injection by using regex with the objective to
-identify special characters and syntaxes SQL. I can suggest as regex (\b(select)\b|\b(SELECT)\b|(\b(from)\b)|(\b(FROM)\b)|\*|\'|(\b(and)\b)| (\b(AND)\b)|\=|(\b(where)\b)|(\b(WHERE)\b)) 
+identify special characters and syntaxes SQL. I can suggest as regex (\b(select)\b|\b(SELECT)\b|(\b(from)\b)|(\b(FROM)\b)|\*|\'|(\b(and)\b)| (\b(AND)\b)|\=|(\b(where)\b)|(\b(WHERE)\b)|(\b(drop)\b)|(\b(DROP)\b)|(\b(1=1)\b)|\=|\;)
 
 - Inside my secure code, I chose the options **1** and **3**.
 
 - In my demo concerning the securisation of this attack bellow you can see when I remove these codes
-        task.setDescription(task.getDescription().replaceAll("(\\b(select)\\b|\\b(SELECT)\\b|(\\b(from)\\b)|(\\b(FROM)\\b)|\\*|\\'|(\\b(and)\\b)| (\\b(AND)\\b)|\\=|(\\b(where)\\b)|(\\b(WHERE)\\b))", ""));
-        task.setName(task.getName().replaceAll("(\\b(select)\\b|\\b(SELECT)\\b|(\\b(from)\\b)|(\\b(FROM)\\b)|\\*|\\'|(\\b(and)\\b)| (\\b(AND)\\b)|\\=|(\\b(where)\\b)|(\\b(WHERE)\\b))", ""));
+        task.setDescription(task.getDescription().replaceAll("(\\b(select)\\b|\\b(SELECT)\\b| ....)", ""));
+        task.getName().replaceAll("(\\b(select)\\b|\\b(SELECT)....)
+
  inside MainController even I insert for exemple a syntaxes SQL in my field the predefined function of spingboot(saveAndFlush) transform the data to String. I insert the code with regex for conserving the consistency of my data
 
 
@@ -81,7 +82,10 @@ inspiration link: https://www.softwaretestinghelp.com/sql-injection-how-to-test-
    * https://tools.kali.org/stress-testing/slowhttptest
 
 ### CRSF attack
-I could not able to test this because I don't really use sessions or cookies.
+I think I could not able to test this because I don't really use sessions or cookies. But I implement à code with can help to exploit in the case of a using sessions or cookies.
+You can find this /cybersec/src/resources/templates/xss_attack.html
+
+ - Inspiration link: https://www.enisa.europa.eu/topics/csirts-in-europe/glossary/cross-site-scripting-xss
 
 ### What I think insecure
 - The user can change the page through the URL, especially the edit-task page, he can change the task he wants to edit through the URL. He just has to change the id for do that,
