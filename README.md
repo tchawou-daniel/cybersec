@@ -70,7 +70,7 @@ inspiration link: https://www.softwaretestinghelp.com/sql-injection-how-to-test-
 ### Web Cache poisoning Attacks
 - Some links which can help ([first link](https://blog.detectify.com/2020/07/28/do-you-trust-your-cache-web-cache-poisoning-explained/), [second link](https://portswigger.net/research/practical-web-cache-poisoning))
 ,I could not able to test this but here are some links which may help to do so
-### HTTP attack 
+### Slow HTTP attack 
  - To test this attack we need to install slowhttptest(SlowHTTPTest is a highly configurable tool that simulates some Application Layer Denial of Service attacks.). On Linux we can do that with this command:  sudo apt-get install slowhttptest.
  - You can test the security with this command: 
     *slowhttptest -c 1000 -H -g -o slowhttp -i 10 -r 200 -t GET -u http://localhost:8086/ -x 24 -p 3
