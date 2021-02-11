@@ -16,15 +16,15 @@
     * You can find the database inside the folder cybersec/database
     * Import the data base (two possibiliies), we can do it through the interface graphically or by the command line
         * Interface graphically : 
-            1) Use http://localhost:8081/ so that PHPMyAdmin is displayed
+            1) Use http://localhost:8081/phpmyadmin so that PHPMyAdmin is displayed
             2) - https://help.dreamhost.com/hc/en-us/articles/214395768-phpMyAdmin-How-to-import-or-restore-a-database-or-table
                - https://waytolearnx.com/2020/01/importer-et-exporter-une-base-de-donnees-mysql.html
         * In command line:
              - docker exec -i mysqlsecu mysql -uroot -pjordan96 tasksdb < /chemin/vers/la base de donnée/tasksdb.sql
 - Second step:
-    * Inside folder's project (cybsersec) you have to run in command line : maven package
-    * Run the command  java -jar secu-0.0.1-SNAPSHOT.jar
-    * Try this url: localhost:8086
+    * Inside folder's project (cybersec) you have to run in command line : mvn clean package
+    * Run also the command : java -jar task-manager.jar
+    * Try this url: localhost:8086 in order to see the program
 
 - Third step: Acces user
     * username: user
@@ -106,7 +106,7 @@ https://www.softwaretestinghelp.com/sql-injection-how-to-test-application-for-sq
     *slowhttptest -c 1000 -H -g -o slowhttp -i 10 -r 200 -t GET -u http://localhost:8086/ -x 24 -p 3
  - if service available:   YES
     * if **service available: YES** then the system is secure
- - You can see my test on the picture below
+ - You can see my test on the picture bellow
     * ![screenshot](previews/test-htttpattack.png)
  - Inspiration links:
    * https://www.youtube.com/watch?v=lNzMIeyLIPM
@@ -114,7 +114,7 @@ https://www.softwaretestinghelp.com/sql-injection-how-to-test-application-for-sq
 
 ### CRSF attack
 I think I wasn't able to test this attack but I implemented a code that can help exploiting in case there's a use of sessions or cookies
-You can find this /cybersec/src/resources/templates/xss_attack.html
+You can find this through this path /cybersec/src/resources/templates/xss_attack.html, 
  - Inspiration link: https://www.enisa.europa.eu/topics/csirts-in-europe/glossary/cross-site-scripting-xss
 
 ### What I think insecure
