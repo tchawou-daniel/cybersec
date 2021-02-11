@@ -1,6 +1,6 @@
 # Cybersec
-- This project in a global way consists in highlighting the different security vulnerabilities that an application can have
-- We built a small project to shed light on the security flaw
+- This project mainly consists in highlighting the different security vulnerabilities than an application may have
+- We built a small project to bring the security flaw (s) to light
 - I have two codes, one secure and the other insecure
     * The secure code is on the *main* branch
     * The insecure code is on the *code-insecure* branch
@@ -27,11 +27,11 @@
 ## We are in the main branch, so the secure branch
 ### A) Injection SQL attack 
 SQL attacks :
-1) Use predefined functions for request such as saveAndFlush in order to prevent Sql injections.
+1) Use predefined functions to request such as saveAndFlush in order to prevent Sql injections 
 With these predefined functions in Spring boot, every element entered by the user are transformed in text.
-2) One other way to prevent SQL injections is to use prepared request
+2) Another way to prevent SQL injections is to use prepared request 
 (https://www.journaldev.com/34028/sql-injection-in-java)
-3) We can also remove special characters for protecting our code from SQL injection by using regex with the objective to
+3) We can also remove special characters to protect our code from SQL injection by using regex with the objective to
 identify special characters and syntaxes SQL. I can suggest as regex (\b(select)\b|\b(SELECT)\b|(\b(from)\b)|(\b(FROM)\b)|\*|\'|(\b(and)\b)| (\b(AND)\b)|\=|(\b(where)\b)|(\b(WHERE)\b)|(\b(drop)\b)|(\b(DROP)\b)|(\b(1=1)\b)|\=|\;)
 
 - Inside my secure code, I chose the options **1** and **3**.
@@ -52,12 +52,13 @@ The implementation of spring security allow us to secure by default our applicat
 4) HTTP attack: https://blog.qualys.com/vulnerabilities-research/2011/11/02/how-to-protect-against-slow-http-attacks
 5) CRSF attack: https://portswigger.net/web-security/csrf
 
-**Here you can find some documentations which speack about the security by default when we use spring security:** 
+**Here is some references about the security by default when we use spring security:** 
 - https://www.baeldung.com/spring-security-csrf
 - https://spring.io/blog/2013/08/23/spring-security-3-2-0-rc1-highlights-security-headers#content-type-options
 
-# How to test of my code concerning the attacks cited above ?
+# How to test my code concerning the attacks mentioned above ?
 ### SQL Attacks
+
 Here we can try to insert inside the input field in order to test :
 - maths'
 - ‘ or 1=1;–
@@ -67,31 +68,30 @@ Here we can try to insert inside the input field in order to test :
 inspiration link: https://www.softwaretestinghelp.com/sql-injection-how-to-test-application-for-sql-injection-attacks/
 ### Clickjacking
 - Some links which can help ([first link](https://clickjacker.io/test?url=https:%2F%2Fwww.isnov.com%2Fhome%2F), [second link](https://www.lookout.net/test/clickjack.html))
-,I could not able to test this but here are some links which may help to do so
+, I could not test this but here are some links which may help to do so
 ### Web Cache poisoning Attacks
 - Some links which can help ([first link](https://blog.detectify.com/2020/07/28/do-you-trust-your-cache-web-cache-poisoning-explained/), [second link](https://portswigger.net/research/practical-web-cache-poisoning))
-,I could not able to test this but here are some links which may help to do so
+,I could not test this but here are some links which may help to do so
 ### Slow HTTP attack 
  - To test this attack we need to install slowhttptest(SlowHTTPTest is a highly configurable tool that simulates some Application Layer Denial of Service attacks.). On Linux we can do that with this command:  sudo apt-get install slowhttptest.
  - You can test the security with this command: 
     *slowhttptest -c 1000 -H -g -o slowhttp -i 10 -r 200 -t GET -u http://localhost:8086/ -x 24 -p 3
  - if service available:   YES
     * if **service available: YES** then the system is secure
- - You can see my test on the image bellow
+ - You can see my test on the picture below
     * ![screenshot](previews/test-htttpattack.png)
- - Inspirations links:
+ - Inspiration links:
    * https://www.youtube.com/watch?v=lNzMIeyLIPM
    * https://tools.kali.org/stress-testing/slowhttptest
 
 ### CRSF attack
-I think I could not able to test this because I don't really use sessions or cookies. But I implement à code with can help to exploit in the case of a using sessions or cookies.
+I think I wasn't able to test this attack but I implemented a code that can help exploiting in case there's a use of sessions or cookies
 You can find this /cybersec/src/resources/templates/xss_attack.html
-
  - Inspiration link: https://www.enisa.europa.eu/topics/csirts-in-europe/glossary/cross-site-scripting-xss
 
 ### What I think insecure
-- The user can change the page through the URL, especially the edit-task page, he can change the task he wants to edit through the URL. He just has to change the id for do that,
-I don't know for the moment how to secure this part if it's eventually a problem as I think. I didn't have the time to look for deep about this.
+- The user can change the page through the URL, especially the edit-task page, he can change the task he wants to edit through the URL. 
+He just has to change the ID to do that, I don't know at the moment how to secure this part if it's eventually an issue as I think. I didn't have the time to search deeper.
 
 [![Demo insecure]()](previews/https://drive.google.com/file/d/17HqGACgovKW6adGaXcJHCtYIETC2OqtI/view?usp=sharing)
 
