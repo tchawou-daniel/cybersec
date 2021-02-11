@@ -15,16 +15,16 @@ public class Task implements Serializable {
     private String name;
     private String description;
     @Temporal(TemporalType.TIMESTAMP)
-    private Date dateCreated;
+    private Date date_created;
     private boolean finished;
 
     public Task(){}
 
-    public Task(String name, String description, Date dateCreated, boolean finished) {
+    public Task(String name, String description, Date date_created, boolean finished) {
         super();
         this.name = name;
         this.description = description;
-        this.dateCreated = dateCreated;
+        this.date_created = date_created;
         this.finished = finished;
     }
 
@@ -47,10 +47,10 @@ public class Task implements Serializable {
         this.description = description;
     }
     public Date getDateCreated() {
-        return dateCreated;
+        return date_created;
     }
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
+    public void setDateCreated(Date date_created) {
+        this.date_created = date_created;
     }
     public boolean isFinished() {
         return finished;
@@ -61,7 +61,7 @@ public class Task implements Serializable {
 
     @Override
     public String toString() {
-        return "Task [id=" + id + ", name=" + name + ", description=" + description + ", dateCreated=" + dateCreated
+        return "Task [id=" + id + ", name=" + name + ", description=" + description + ", date_created=" + date_created
                 + ", finished=" + finished + "]";
     }
 

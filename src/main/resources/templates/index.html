@@ -43,7 +43,6 @@
                         <th>Name</th>
                         <th>Description</th>
                         <th>Date Created</th>
-                        <th>Deadline</th>
                         <th>Finished</th>
                         <th></th>
                         <th></th>
@@ -56,7 +55,6 @@
                                 <td th:text="${task.name}"></td>
                                 <td th:text="${task.description}"></td>
                                 <td th:text="${#dates.format(task.dateCreated, 'dd-MM-yyyy HH:mm:ss')}"></td>
-                                <td></td>
                                 <td th:text="${task.finished}"></td>
                                 <td><a th:href="@{/edit-task/{id}(id=${task.id})}"><span class="glyphicon glyphicon-pencil"></span>editer</a></td>
                                 <td><a th:href="@{/delete-task/{id}(id=${task.id})}"><span class="glyphicon glyphicon-trash"></span>supprimer</a></td>
