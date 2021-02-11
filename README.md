@@ -8,10 +8,32 @@
 ![screenshot](previews/preview1.png)
 
 ### How to run this code
-- First step:
+- First step(Database) :
+    * docker pull mysql:8.0.1
+    * docker run --name mysqlsecu -e MYSQL_ROOT_PASSWORD=jordan96 -d mysql:8.0.1
+    * docker pull phpmyadmin/phpmyadmin:latest
+    * docker run --name phpmyadminsecu -d --link mysqlsecu:db -p 8081:80 phpmyadmin/phpmyadmin
+    * You can find the database inside the folder cybersec/database
+    * Import the data base (two possibiliies), we can do it through the interface graphically or by the command line
+        * Interface graphically : 
+            1) Use http://localhost:8081/ so that PHPMyAdmin is displayed
+            2) - https://help.dreamhost.com/hc/en-us/articles/214395768-phpMyAdmin-How-to-import-or-restore-a-database-or-table
+               - https://waytolearnx.com/2020/01/importer-et-exporter-une-base-de-donnees-mysql.html
+        * In command line:
+             - docker exec -i mysqlsecu mysql -uroot -pjordan96 tasksdb < /chemin/vers/la base de donnée/tasksdb.sql
 - Second step:
-    * Run the command  java -jar target/secu-0.0.1-SNAPSHOT.jar  
+    * Inside folder's project (cybsersec) you have to run in command line : maven package
+    * Run the command  java -jar secu-0.0.1-SNAPSHOT.jar
+    * Try this url: localhost:8086
 
+- Third step: Acces user
+    * username: user
+    * password: jordan96
+  
+    
+**Inspire links:** 
+- https://medium.com/@migueldoctor/run-mysql-phpmyadmin-locally-in-3-steps-using-docker-74eb735fa1fc
+- https://stackoverflow.com/questions/43880026/import-data-sql-mysql-docker-container
 ### Built With
 - HTML, CSS, Bootstrap
 - Spring
@@ -62,10 +84,16 @@ The implementation of spring security allow us to secure by default our applicat
 Here we can try to insert inside the input field in order to test :
 - maths'
 - ‘ or 1=1;–
-- ‘ or 1=1; drop table t_tasks; —
-[![Demo SQL Attacks whithout using regex]()](https://drive.google.com/file/d/1QC3r9tea08yUAb_IkLvHvTMvvv-60oww/view?usp=sharing)
-[![Demo SQL Attacks whit regex inside the app code]()](https://drive.google.com/file/d/1F1kHXDPW2d0coZLjuNmIHmwL-5lV9MzA/view?usp=sharing)
-inspiration link: https://www.softwaretestinghelp.com/sql-injection-how-to-test-application-for-sql-injection-attacks/
+- ‘ or 1=1; drop table t_tasks; 
+
+[Demo SQL Attacks whithout using regex](https://drive.google.com/file/d/1QC3r9tea08yUAb_IkLvHvTMvvv-60oww/view?usp=sharing)
+
+[Demo SQL Attacks whit regex inside the app code](https://drive.google.com/file/d/1F1kHXDPW2d0coZLjuNmIHmwL-5lV9MzA/view?usp=sharing)
+
+
+**Inspiration link**: 
+https://www.softwaretestinghelp.com/sql-injection-how-to-test-application-for-sql-injection-attacks/
+
 ### Clickjacking
 - Some links which can help ([first link](https://clickjacker.io/test?url=https:%2F%2Fwww.isnov.com%2Fhome%2F), [second link](https://www.lookout.net/test/clickjack.html))
 , I could not test this but here are some links which may help to do so
@@ -92,9 +120,26 @@ You can find this /cybersec/src/resources/templates/xss_attack.html
 ### What I think insecure
 - The user can change the page through the URL, especially the edit-task page, he can change the task he wants to edit through the URL. 
 He just has to change the ID to do that, I don't know at the moment how to secure this part if it's eventually an issue as I think. I didn't have the time to search deeper.
+- [Link Demo insecure](previews/https://drive.google.com/file/d/17HqGACgovKW6adGaXcJHCtYIETC2OqtI/view?usp=sharing)
 
-[![Demo insecure]()](previews/https://drive.google.com/file/d/17HqGACgovKW6adGaXcJHCtYIETC2OqtI/view?usp=sharing)
 
+### SECURITY OBJECTIVES
+##### Privacy (3/5):
+The information should be available only to those with the necessary rights.
+In my application, you can see the user must know his username and password in order to see the content
+
+#####  Integrity (4/5): 
+The expected data must be those received, without any possible alteration. I tried to conserve the coherence with of my data by using regex and by securing the reception and transmission of information by the application.
+
+#####  Availability (3/5): 
+The system must be in optimal operating condition and respond to user requests in a timely and rapid manner.
+
+#####  The traceability (2/5): 
+Any trace of any activity must be able to be recorded. Actually, the traceability is not a priority in our system because we didn't finish the implementation of this.
+
+#####  SECURITY FEATURES implemented
+- Spring security
+- Use of regex to have a minimum of consistency
 
 
 
