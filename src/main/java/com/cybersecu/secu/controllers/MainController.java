@@ -64,16 +64,18 @@ public class MainController {
         return "index";
     }
 
-    @GetMapping("/edit-task/{id}")
-    public String editTask(@PathVariable("id") int id, ModelMap modelMap){
+    @GetMapping("/edit-task/{id}/{description}")
+    public String editTask(@PathVariable("id") int id,
+                           @PathVariable("description") String description,Task task, ModelMap modelMap){
         //les trois fonctions que j'ai essayé pour trouver une faille sql : getOne, findOneInsecure, findOneIsecureAB
         //modelMap.put("task", taskRepository.getOne(id));
         //modelMap.put("task", taskRepository.findOneInsecure(id));
-        modelMap.put("task",this.findOneInsecureAB(id));
+
+        modelMap.put("task",this.findOneInsecureAB(id, description));
         modelMap.put("mode", "MODE_UPDATE");
         return "index";
     }
-
+//@GetMapping("/edit-task?{id}&{description}")
     @RequestMapping(value="/delete-task/{id}")
     public String deleteTask(@PathVariable("id") int id, ModelMap modelMap){
         taskRepository.deleteById(id);
@@ -86,15 +88,16 @@ public class MainController {
 
     //juste pour trouver la faille injection sql mais ça ne marche pas avec cette fonction
     //Elle renvoi toute les attaques en text
-    public Task findOneInsecureAB(int id){
-
-        String sql = "SELECT * FROM t_tasks WHERE id=?";
+    public Task findOneInsecureAB(int id, String description){
+        //String sql = "SELECT * FROM t_tasks WHERE"+"( t_tasks.description='"+ description+"')";
+        ///String sql = "SELECT * FROM t_tasks WHERE id= '"+ id +"' AND "+"description='"+description+"'";
+        //String sql = "SELECT * FROM t_tasks WHERE"+" ( t_tasks.id="+id +" t_tasks.description='"+ description+"')";
+        String sql = "SELECT * FROM t_tasks WHERE "+"( t_tasks.id="+id +" AND t_tasks.description='"+ description+"')";
 
 
         jdbcTemplate = new JdbcTemplate(jdbcTemplate.getDataSource());
         Task task = (Task) jdbcTemplate.queryForObject(
-                sql, new Object[] { id }, new BeanPropertyRowMapper<>(Task.class));
-
+                sql, new BeanPropertyRowMapper<Task>(Task.class));
         return task;
     }
 
