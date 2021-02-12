@@ -23,7 +23,7 @@
              - docker exec -i mysqlsecu mysql -uroot -pjordan96 tasksdb < /chemin/vers/la base de donnée/tasksdb.sql
 - Second step:
     * Inside folder's project (cybersec) you have to run in command line : mvn clean package
-    * Run also the command : java -jar task-manager.jar
+    * Run also the command : java -jar target/task-manager.jar
     * Try this url: localhost:8086 in order to see the program
 
 - Third step: Acces user
