@@ -103,7 +103,7 @@ https://www.softwaretestinghelp.com/sql-injection-how-to-test-application-for-sq
 ### Slow HTTP attack 
  - To test this attack we need to install slowhttptest(SlowHTTPTest is a highly configurable tool that simulates some Application Layer Denial of Service attacks.). On Linux we can do that with this command:  sudo apt-get install slowhttptest.
  - You can test the security with this command: 
-    *slowhttptest -c 1000 -H -g -o slowhttp -i 10 -r 200 -t GET -u http://localhost:8086/ -x 24 -p 3
+    slowhttptest -c 1000 -H -g -o slowhttp -i 10 -r 200 -t GET -u http://localhost:8086/ -x 24 -p 3
  - if service available:   YES
     * if **service available: YES** then the system is secure
  - You can see my test on the picture bellow
